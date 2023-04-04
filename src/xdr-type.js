@@ -9,7 +9,7 @@ class XdrType {
    * @return {String|Buffer}
    */
   toXDR(format = 'raw') {
-    if (this instanceof XdrPrimitiveType)
+    if (!this.write)
       return this.constructor.toXDR(this, format);
 
     const writer = new XdrWriter();
@@ -24,7 +24,7 @@ class XdrType {
    * @return {XdrType}
    */
   fromXDR(input, format = 'raw') {
-    if (this instanceof XdrPrimitiveType)
+    if (!this.read)
       return this.constructor.fromXDR(input, format);
 
     const reader = new XdrReader(decodeInput(input, format));
@@ -127,29 +127,7 @@ export class XdrPrimitiveType extends XdrType {
 }
 
 export class XdrCompositeType extends XdrType {
-  /**
-   * Read value from the XDR-serialized input
-   * @param {XdrReader} reader - XdrReader instance
-   * @return {*}
-   * @abstract
-   */
-  // eslint-disable-next-line no-unused-vars
-  read(reader) {
-    throw new XdrNotImplementedDefinitionError()
-  }
-
-  /**
-   * Write XDR value to the buffer
-   * @param {*} value - Value to write
-   * @param {XdrWriter} writer - XdrWriter instance
-   * @return {void}
-   * @abstract
-   */
-  // eslint-disable-next-line no-unused-vars
-  write(value, writer) {
-    throw new XdrNotImplementedDefinitionError()
-  }
-
+  // Every descendant should implement two methods: read(reader) and write(value, writer)
   /**
    * Check whether XDR primitive value is valid
    * @param {XdrType} value - Value to check
