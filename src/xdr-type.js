@@ -24,6 +24,26 @@ class XdrType {
   }
 
   /**
+   * Decode XDR-encoded value
+   * @param {Buffer|String} input - XDR-encoded input data
+   * @param {XdrEncodingFormat} [format] - Encoding format (one of "raw", "hex", "base64")
+   * @return {XdrType}
+   */
+  fromXDR(input, format = 'raw') {
+    return this.constructor.fromXDR(input, format);
+  }
+
+  /**
+   * Check whether input contains a valid XDR-encoded value
+   * @param {Buffer|String} input - XDR-encoded input data
+   * @param {XdrEncodingFormat} [format] - Encoding format (one of "raw", "hex", "base64")
+   * @return {Boolean}
+   */
+  validateXDR(input, format = 'raw') {
+    return this.constructor.validateXDR(input, format);
+  }
+
+  /**
    * Encode value to XDR format
    * @param {XdrPrimitiveType} value - Value to serialize
    * @return {Buffer}
@@ -35,10 +55,10 @@ class XdrType {
   }
 
   /**
-   * Check whether input contains a valid XDR-encoded value
+   * Decode XDR-encoded value
    * @param {Buffer|String} input - XDR-encoded input data
    * @param {XdrEncodingFormat} [format] - Encoding format (one of "raw", "hex", "base64")
-   * @return {Boolean}
+   * @return {XdrType}
    */
   static fromXDR(input, format = 'raw') {
     let buffer;
