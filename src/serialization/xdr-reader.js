@@ -136,6 +136,16 @@ export class XdrReader {
   readDoubleBE() {
     return this._buffer.readDoubleBE(this.advance(8));
   }
+
+  /**
+   * Ensure that input buffer has been consumed in full, otherwise it's a type mismatch
+   * @return {void}
+   * @throws {XdrReaderError}
+   */
+  ensureInputConsumed() {
+    if (this._index !== this._length)
+      throw new XdrReaderError(`invalid XDR contract typecast - source buffer not entirely consumed`);
+  }
 }
 
 
