@@ -3,6 +3,7 @@ import { XdrWriter } from './serialization/xdr-writer';
 import { XdrNotImplementedDefinitionError } from './errors';
 
 class XdrType {
+
   /**
    * Encode value to XDR format
    * @param {XdrEncodingFormat} [format] - Encoding format (one of "raw", "hex", "base64")
@@ -90,7 +91,6 @@ class XdrType {
 }
 
 export class XdrPrimitiveType extends XdrType {
-
   /**
    * Read value from the XDR-serialized input
    * @param {XdrReader} reader - XdrReader instance
@@ -128,6 +128,7 @@ export class XdrPrimitiveType extends XdrType {
 
 export class XdrCompositeType extends XdrType {
   // Every descendant should implement two methods: read(reader) and write(value, writer)
+
   /**
    * Check whether XDR primitive value is valid
    * @param {XdrType} value - Value to check
