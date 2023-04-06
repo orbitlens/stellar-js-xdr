@@ -34,6 +34,10 @@ export class UnsignedHyper extends XdrPrimitiveType {
     return this._value.toString();
   }
 
+  toJSON() {
+    return {_value: this._value.toString()}
+  }
+
   /**
    * @inheritDoc
    */
