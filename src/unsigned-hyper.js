@@ -1,4 +1,4 @@
-import {XdrPrimitiveType} from './xdr-type';
+import { XdrPrimitiveType } from './xdr-type';
 import { XdrWriterError } from './errors';
 
 const MIN_VALUE = 0n;
